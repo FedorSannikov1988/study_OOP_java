@@ -75,26 +75,62 @@ public class VendingMachine {
         return foundProduct;
     }
 
-    public void sellOneProductHuman(String typeProduct, String brandProduct) {
+    private int searchIndexInListForSellOneProductHuman(List<Product> listForSearch) {
+
+        int count = 0;
+
+        for(Product product : productsForSale) {
+            if (product == listForSearch.get(0)) {
+                return count;
+            }
+            count ++;
+        }
+        return count;
+    }
+
+    private void modificationsListForSellOneProductHuman(boolean flagForDecreaseOrDelete,
+                                                         int indexForDecreaseOrDelete,
+                                                         int bufferForQuantityProductPackage) {
+        if (!flagForDecreaseOrDelete) {
+            productsForSale.get(indexForDecreaseOrDelete).setQuantityProductPackage(bufferForQuantityProductPackage-1);
+        }
+        else {
+            productsForSale.remove(indexForDecreaseOrDelete);
+        }
+    }
+
+    public boolean sellOneProductHuman(String typeProduct, String brandProduct) {
+
+        int indexForDecreaseOrDelete = 0;
+
+        int bufferForQuantityProductPackage;
+
+        boolean flagForDecreaseOrDelete;
 
         List<Product> findProductForPurchased =
                 findTypeProductAndBrandProductInVM(typeProduct, brandProduct);
 
         if (findProductForPurchased.size() > 0) {
-            for (int i = 0; i < productsForSale.size(); i++) {
-                if (productsForSale.get(i) == findProductForPurchased.get(0)) {
 
-                    if (productsForSale.get(i).getQuantityProductPackage() > 1) {
-                        revenueVendingMachine += productsForSale.get(i).getCostProductPackage();
-                        productsForSale.get(i).setQuantityProductPackage((productsForSale.get(i).getQuantityProductPackage())-1);
-                    }
-                    else {
-                        revenueVendingMachine += productsForSale.get(i).getCostProductPackage();
-                        productsForSale.remove(i);
-                        return;
-                    }
-                }
-            }
+            revenueVendingMachine +=
+                    findProductForPurchased.get(0).getCostProductPackage();
+
+            bufferForQuantityProductPackage =
+                    findProductForPurchased.get(0).getQuantityProductPackage();
+
+            flagForDecreaseOrDelete =
+                    (bufferForQuantityProductPackage == 1);
+
+            indexForDecreaseOrDelete =
+                    searchIndexInListForSellOneProductHuman(findProductForPurchased);
+
+            modificationsListForSellOneProductHuman(flagForDecreaseOrDelete,
+                    indexForDecreaseOrDelete, bufferForQuantityProductPackage);
+
+            return true;
+        }
+        else {
+            return false;
         }
     }
 

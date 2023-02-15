@@ -65,8 +65,26 @@ public class Main {
         System.out.println("\n" + "Содержимое торгового автомата до продажи товара:");
         System.out.println(vendingMachineOne);
 
-        vendingMachineOne.sellOneProductHuman("Газировка","Колокольчик");
-        vendingMachineOne.sellOneProductHuman("Сок","Добрый");
+        System.out.println("----------------------");
+
+        //вероятно нужно функцию написать
+        if (vendingMachineOne.sellOneProductHuman("Газировка","Колокольчик")) {
+            System.out.println("\n" + "Покупка произведена");
+        }
+        else {
+            System.out.println("\n" + "Покупка НЕ произведена");
+        }
+
+        System.out.println("----------------------");
+
+        if (vendingMachineOne.sellOneProductHuman("Сок","Добрый")) {
+            System.out.println("\n" + "Покупка произведена");
+        }
+        else {
+            System.out.println("\n" + "Покупка НЕ произведена");
+        }
+
+        System.out.println("----------------------");
 
         System.out.println("\n" + "Содержимое торгового автомата после продажи товара:");
         System.out.println(vendingMachineOne);

@@ -3,7 +3,7 @@ package homework1;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Product {
+public abstract class Product {
     protected String typeProduct = "";
     protected String brandProduct = "";
     protected double costProductPackage = 0;
