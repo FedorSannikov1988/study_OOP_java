@@ -3,19 +3,19 @@ package homework3;
 public class Node {
 
     private int data;
-    private Node forAddressNextMode;
+    private Node forAddressNextNode;
 
     public Node(int data) {
         this.data = data;
-        forAddressNextMode = null;
+        forAddressNextNode = null;
     }
 
-    public void setForAddressNextNode(Node forAddressNextMode) {
-        this.forAddressNextMode = forAddressNextMode;
+    public void setForAddressNextNode(Node forAddressNextNode) {
+        this.forAddressNextNode = forAddressNextNode;
     }
 
     public Node getForAddressNextNode() {
-        return forAddressNextMode;
+        return forAddressNextNode;
     }
 
     public int getDataInNode() {
