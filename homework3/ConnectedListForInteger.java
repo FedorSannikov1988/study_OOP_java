@@ -44,7 +44,7 @@ public class ConnectedListForInteger implements Iterable<Integer> {
 
     protected class ConnectedListForIntegerIterator implements Iterator<Integer> {
 
-        private static int indexElementList = 0;
+        private static int indexElementList = -1;
 
         public static int getIndexElementList() {
             return indexElementList;
@@ -52,13 +52,13 @@ public class ConnectedListForInteger implements Iterable<Integer> {
 
         @Override
         public boolean hasNext() {
-            return indexElementList < getSizeConnectedListForInteger();
+            return indexElementList < (getSizeConnectedListForInteger()-1);
         }
 
         @Override
         public Integer next() {
 
-            if (indexElementList != 0) {
+            if (indexElementList != -1) {
                 head = head.getForAddressNextNode();
             }
 
