@@ -1,6 +1,7 @@
 package practice3;
 
-public class User {
+public class User implements Comparable<User> {
+
     private int age;
     private String firstName;
     private String lastName;
@@ -18,6 +19,24 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 " \n";
+    }
+
+    @Override
+    public int compareTo(User o) {
+
+        int conditionFirstName = firstName.compareTo(o.firstName);
+
+        if(conditionFirstName != 0) {
+            return conditionFirstName;
+        }
+
+        int conditionLastName = lastName.compareTo(o.lastName);
+
+        if (conditionLastName != 0) {
+            return conditionLastName;
+        }
+
+        return this.age - o.age ;
     }
 
 }

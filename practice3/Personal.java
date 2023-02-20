@@ -1,14 +1,26 @@
 package practice3;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
+
+//public class Personal implements Iterator<User> {
 
 public class Personal implements Iterable<User> {
 
     private User[] users;
-
     public Personal(User[] users) {
         this.users = users;
     }
+
+    public List<User> toList() {
+        List<User> users = new ArrayList<User>();
+        for (User user : this) {
+            users.add(user);
+        }
+        return users;
+    }
+
 /*
     private int index = 0;
 
